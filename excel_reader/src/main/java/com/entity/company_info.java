@@ -21,7 +21,7 @@ public class company_info {
 	String mobil4;
 	String tel2;
 	String mobil5;
-	
+	/****************************added at day20-6-2022*/
 	String location;
 	String categury;
 	

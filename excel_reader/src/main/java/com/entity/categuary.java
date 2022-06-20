@@ -11,7 +11,7 @@ import jdbc.ASingleton;
 
 public class categuary {
 
-	int serial;
+	int serial; 
 	String name_title;
 	
 	private categuary(String name_title) {
