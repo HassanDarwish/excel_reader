@@ -88,7 +88,7 @@ public class App {
 	//evaluating cell type   
 	FormulaEvaluator formulaEvaluator=wb.getCreationHelper().createFormulaEvaluator();  
 	int columnIndex=0,cellIndex=0;String cat_title=""; 
-	
+	int flag_cat=0;
 	
 			for(Row row: sheet)     //iteration over row using for each loop  
 			{
@@ -118,9 +118,32 @@ public class App {
 					System.out.print(cell.getStringCellValue()+ "Hassan Ali Hassan\t\t");  
 					break; 
 					} 
-				
-				if(column_letter.equals("B"))
+				if(column_letter.equals("A")) {
+					String int_name_title="";
+					try {
+						int_name_title=cell.getStringCellValue();
+						}catch(Exception e) {
+							int_name_title=String.valueOf( Long.valueOf((long) cell.getNumericCellValue()));
+						}
+					 
+					  if(int_name_title.equals("2")) {
+						  System.out.println(column_letters.size()+"it looks categuary"+cat_title); 
+						
+						  flag_cat=1;
+						  }
+						 
+						
+				}else {
+				if(column_letter.equals("B")) {
+					
 						name_title=cell.getStringCellValue();
+						if(flag_cat==1) {
+						  categuary cat_=new categuary.Builder().build(name_title); cat_.save(); 
+						  categury=name_title;		
+				
+						 
+					}
+				}
 				if(column_letter.equals("C")) {
 					try {
 					tel1=cell.getStringCellValue();
@@ -143,13 +166,16 @@ public class App {
 					location=cell.getStringCellValue();
 				  
 				
-				}  
+				}  }
 				
 				if(column_letters.size()>1) {
+						if(flag_cat==0) {
 					company_info COMAPNY=new company_info.Builder().setName_title(name_title).setEmail(email).setMobil1(mobil1).setMobil2(mobil2)
 							.setMobil3(mobil3).setMobil4(mobil4).setMobil5(mobil5).setTel1(tel1)
 							.setTel2(tel2).setWebsite(name_title).setLocation(location).setCategury(categury).build();
 					COMAPNY.save();
+						}
+						  flag_cat=0;
 					  name_title = "";
 					  tel1 = "";
 					  email = "";
@@ -164,12 +190,6 @@ public class App {
 					  //categury="";
 				}
 				
-				  if(column_letters.size()<=1) {
-				  System.out.println(column_letters.size()+"it looks categuary"); categuary
-				  cat_=new categuary.Builder().build(cat_title); cat_.save(); 
-				  categury=cat_title;
-				  }
-				 
 				
 				
 				
